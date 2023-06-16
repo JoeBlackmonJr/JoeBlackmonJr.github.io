@@ -19,6 +19,8 @@
 		}
 		.board{
 			height: 100vh;
+			background-image: url("https://e0.pxfuel.com/wallpapers/35/239/desktop-wallpaper-green-purple-neon-light-lines-abstraction-abstract.jpg");
+
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -27,7 +29,6 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">?</div>
-
 	<script>
 		(function(){
 			'use strict'
@@ -48,8 +49,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css('top', newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -66,6 +68,12 @@
 
 			var points = 0;
 
+			var speed = 10;
+
+			var positionY = 0;
+			
+			var speedY = 0;
+
 			
 			
 
@@ -75,8 +83,11 @@
 			turn it around! 
 			*/
 			function update() {
-				positionX = positionX + 10;
+				positionX = positionX + speed;
 				moveBoxTo(positionX);
+				if (positionX > boardWidth) {
+					speed *= -1;
+				}
 
 			};
 
@@ -87,11 +98,20 @@
 			*/
 			function handleBoxClick() {
 				positionX = 0;
-				
+				points = points + 1;
 				changeBoxText(points);
+
+				if (speed > 0) {
+					speed + 3;
+				}
+
+				else if (speed < 0) {
+					speed - 3;
+				}
 
 			};
 		})();
 	</script>
 </body>
 </html>
+ 
