@@ -74,6 +74,13 @@
 			
 			var speedY = 0;
 
+			var boardHeight = jQuery(window).height();
+
+			var randNum = Math.random() * 100;
+
+			var colorStr = "rgb(50, 25, 250)";
+			box.css('background-color', colorStr);
+
 			
 			
 
@@ -84,8 +91,22 @@
 			*/
 			function update() {
 				positionX = positionX + speed;
-				moveBoxTo(positionX);
+				positionY = positionY + speedY;
+				moveBoxTo(positionX, positionY);
 				if (positionX > boardWidth) {
+					speed *= -1;
+				}
+
+				if (positionX < 0) {
+					speed *= -1;
+				}
+				
+
+				if (positionY > boardHeight) {
+					speed *= -1;
+				}
+
+				if (positionY < 0) {
 					speed *= -1;
 				}
 
@@ -98,15 +119,25 @@
 			*/
 			function handleBoxClick() {
 				positionX = 0;
+				positionY = 0;
 				points = points + 1;
 				changeBoxText(points);
 
 				if (speed > 0) {
-					speed + 3;
+					speed += 3;
 				}
 
 				else if (speed < 0) {
-					speed - 3;
+					speed -= 3;
+				}
+
+
+				if (speedY > 0) {
+					speedY += 3;
+				}
+
+				else if (speedY < 0) {
+					speedY -= 3;
 				}
 
 			};
