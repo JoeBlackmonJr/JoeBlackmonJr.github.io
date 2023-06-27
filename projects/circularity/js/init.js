@@ -64,17 +64,18 @@ var init = function (window) {
             // physikz.updatePosition(circles[3]);
             // physikz.updatePosition(circles[4]);
 
-            for (var loopsCompleted = 0; loopsCompleted < myArray.length; loopsCompleted++) {
-                physikz.updatePosition(circles);
+            for (var i = 0; i < circles.length; i++) {
+                physikz.updatePosition(circles[i]);
+                game.checkCirclePosition(circles[i])
             }
 
 
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            game.checkCirclePosition(circles[0]);
-            game.checkCirclePosition(circles[1]);
-            game.checkCirclePosition(circles[2]);
-            game.checkCirclePosition(circles[3]);
-            game.checkCirclePosition(circles[4]); 
+            // game.checkCirclePosition(circles[0]);
+            // game.checkCirclePosition(circles[1]);
+            // game.checkCirclePosition(circles[2]);
+            // game.checkCirclePosition(circles[3]);
+            // game.checkCirclePosition(circles[4]); 
 
             // TODO 9 : Iterate over the array
 
@@ -94,7 +95,7 @@ var init = function (window) {
             }
 
             if (circle.x < 0) {
-                circle.x = 0;
+                circle.x = canvas.width;
             }
 
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
@@ -104,7 +105,7 @@ var init = function (window) {
             }
 
             if (circle.y < 0) {
-                circle.y = 0;
+                circle.y = canvas.height;
             }
 
 
