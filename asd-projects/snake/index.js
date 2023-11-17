@@ -72,6 +72,7 @@ updateInterval = setInterval(update, 100);
 function update() {
   // TODO 5b: Fill in the update function's code block
   // moveSnake();
+  moveSnake();
 
   if (hasHitWall() || hasCollidedWithSnake()) {
     endGame();
@@ -92,6 +93,18 @@ function checkForNewDirection(event) {
 
   if (activeKey === KEY.LEFT) {
     snake.head.direction = "left";
+  }
+
+  if (activeKey === KEY.RIGHT) {
+    snake.head.direction = "right"
+  }
+
+  if (activeKey === KEY.UP) {
+    snake.head.direction = "up"
+  }
+
+  if (activeKey === KEY.DOWN) {
+    snake.head.direction = "down"
   }
 
   // FILL IN THE REST
@@ -119,6 +132,32 @@ function moveSnake() {
   HINT: The snake's head will need to move forward 1 square based on the value
   of snake.head.direction which may be one of "left", "right", "up", or "down"
   */
+
+  if (snake.head.direction === "left") {
+    snake.head.column = snake.head.column - 1;
+  }
+
+  if (snake.head.direction === "right") {
+    snake.head.column = snake.head.column + 1;
+  }
+
+  if (snake.head.direction === "down") {
+    snake.head.column = snake.head.column - 0;
+  }
+
+  if (snake.head.direction === "up") {
+    snake.head.column = snake.head.column + 0 ;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  repositionSquare(snake.head);
 }
 
 function hasHitWall() {
@@ -166,8 +205,30 @@ function handleAppleCollision() {
 
   // code to determine the row and column of the snakeSquare to add to the snake
 
-  makeSnakeSquare(row, column);
-}
+  makeSnakeSquare(row, column)
+    // initialize a new snakeSquare Object
+    var snakeSquare = {};
+  
+    // make the snakeSquare.element Object and append it to the board
+    snakeSquare.element = $("<div>").addClass("snake").appendTo(board);
+  
+    // initialize the row and column properties on the snakeSquare Object
+    snakeSquare.row = row;
+    snakeSquare.column = column;
+  
+    // set the position of the snake on the screen
+    repositionSquare(snakeSquare);
+    
+    // if this is the h ead, add the snake-head id
+    if (snake.body.length === 0) {
+      snakeSquare.element.attr("id", "snake-head");
+    }
+  
+    // add snakeSquare to the end of the body Array and set it as the new tail
+    snake.body.push(snakeSquare);
+    snake.tail = snakeSquare;
+  }
+
 
 function hasCollidedWithSnake() {
   /* 
