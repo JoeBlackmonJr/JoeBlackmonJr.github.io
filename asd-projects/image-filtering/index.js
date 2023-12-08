@@ -20,8 +20,8 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-return applyFilter()
-  
+  return applyFilter()
+
 
   // do not change the below line of code
   render($("#display"), image);
@@ -32,23 +32,31 @@ return applyFilter()
 /////////////////////////////////////////////////////////
 
 // TODO 1, 2 & 4: Create the applyFilter function here
-function applyFilter() {
-for (let i = 0; i < image.length; i++) {
-  for (let j = 0; j < image[i].length; j++) {
-   var rgbString = image[i][j]
+function applyFilter(filterFunction) {
+  for (let i = 0; i < image.length; i++) {
+    for (let j = 0; j < image[i].length; j++) {
+      var rgbString = image[i][j];
+      var rgbNumbers = rgbStringToArray(rgbString);
+      filterFunction(rgbNumbers);
+      image[i][j] = rgbArrayToString(rgbNumbers);
+    }
   }
 }
-}
 
-var rgbNumbers
 
 // TODO 7: Create the applyFilterNoBackground function
 
 
 // TODO 5: Create the keepInBounds function
+function keepInBounds(num){
+  return Math.min(Math.max(num, 0), 255);
+}
 
 
 // TODO 3: Create reddify function
+function reddify(jArray){
+  jArray(0)= 200;
+}
 
 
 // TODO 6: Create more filter functions
