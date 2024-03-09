@@ -285,3 +285,4 @@ function handleGood (color, shape, repeat) {
     $("#shape").css("transform", `rotate(${animationDetails.angle}deg)`);
   }
 });
+
